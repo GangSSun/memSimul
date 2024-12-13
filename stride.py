@@ -2,6 +2,7 @@ class Prefetcher:
     def __init__(self):
         self.last_address = None
         self.stride = None
+        self.name = "stride"
 
     def prefetch(self, address):
         if self.last_address is not None:

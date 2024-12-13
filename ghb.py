@@ -1,6 +1,7 @@
 class Prefetcher:
     def __init__(self):
         self.history = []
+        self.name = "ghb"
 
     def prefetch(self, address):
         self.history.append(address)

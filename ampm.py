@@ -1,6 +1,7 @@
 class Prefetcher:
     def __init__(self):
         self.pages = {}
+        self.name = "ampm"
 
     def prefetch(self, address):
         page_index = address >> 12  # Page index

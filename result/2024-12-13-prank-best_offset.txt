@@ -1,0 +1,17 @@
+=========================Simulation Results=========================
+DRAM BUFFER	128
+DRAM MEMORY	2048
+=========================best_offset Prefetcher=========================
+Access count : 	833519
+[HIT] : 	72	  [PREFETCH HIT] : 	0	  [MISS] : 	700853
+[WRITE] : 	132594	  [READ] : 	700920
+=========================best_offset Prefetcher=========================
+=========================TOTAL INFO=========================
+Access count : 	833519
+[TOTAL HIT] : 	72	  [TOTAL MISS] : 	700853
+[TOTAL WRITE] : 	132594	  [TOTAL READ] : 	700920
+[DATA WRITE] : 	132594	  [DATA READ] : 	700920
+[INST WRITE] : 	0	  [INST READ] : 	5
+[TOTAL HIT RATE] : 	0.00	  [TOTAL MISS RATE] : 	0.84
+[PREFETCH Hit PER PREFETCH NUM] :	0.00
+=========================TOTAL INFO=========================

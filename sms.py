@@ -1,6 +1,7 @@
 class Prefetcher:
     def __init__(self):
         self.history = {}
+        self.name = "sms"
 
     def prefetch(self, address):
         base_address = address & ~0xFFF  # Align to page boundary

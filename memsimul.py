@@ -28,7 +28,9 @@ class MemorySimulator:
     def load_trace_file(self, filepath):
         """Load memory access trace from a file."""
         with open(filepath, 'r') as f:
-            for line in f:
+            lines = f.readlines()
+            half_lines = lines[:len(lines) // 2]  # Use only the first half of the lines
+            for line in half_lines:
                 parts = line.strip().split()
                 if len(parts) == 2:
                     op_type = int(parts[0])  # Operation type
@@ -47,7 +49,6 @@ class MemorySimulator:
             self.stats['cache_hit'] += 1
             self.cache.move_to_end(address)  # Update for LRU
             if address in self.prefetched_addresses:
-                self.stats['prefetches'] += 1  # Count as a prefetch hit
                 self.prefetched_addresses.remove(address)  # Mark as used
         else:
             self.stats['cache_miss'] += 1
@@ -134,24 +135,31 @@ class MemorySimulator:
 
         with open(filename, 'w') as f:
             f.write("=========================Simulation Results=========================" + "\n")
-            f.write(f"Access count : \t{self.stats['access_count']}\n")
-            f.write(f"[HIT] : \t{self.stats['cache_hit']}\t  [MISS] : \t{self.stats['cache_miss']}\n")
-            f.write(f"[DATA READS] : \t{self.stats['reads']}\t  [DATA WRITES] : \t{self.stats['writes']}\n")
-            f.write(f"[INST READS] : \t{self.stats['inst_reads']}\t  [INST WRITES] : \t{self.stats['inst_writes']}\n")
-            f.write(f"[PREFETCHES] : \t{total_prefetches}\t  [USELESS PREFETCHES] : \t{self.stats['useless_prefetches']}\n")
-            f.write(f"Current RAM Usage : \t{self.current_ram_usage // (1024 * 1024)} MB / {self.max_ram_size // (1024 * 1024)} MB\n")
-            f.write("=========================SUMMARY=========================" + "\n")
-            f.write(f"[TOTAL HIT RATE] : \t{total_hit_rate:.2f}\n")
-            f.write(f"[TOTAL MISS RATE] : \t{total_miss_rate:.2f}\n")
-            f.write(f"[PREFETCH HIT RATE] : \t{prefetch_hit_rate:.2f}\n")
-            f.write("=========================END=========================" + "\n")
+            f.write(f"DRAM BUFFER\t{self.cache_size}\n")
+            f.write(f"DRAM MEMORY\t{self.max_ram_size // (1024 * 1024)}\n")
+            f.write("=========================" + prefetcher_name + " Prefetcher=========================\n")
+            f.write(f"Access count : \t{total_access}\n")
+            f.write(f"[HIT] : \t{self.stats['cache_hit']}\t  [PREFETCH HIT] : \t{total_prefetch_hits}\t  [MISS] : \t{total_miss}\n")
+            f.write(f"[WRITE] : \t{self.stats['writes']}\t  [READ] : \t{self.stats['reads']}\n")
+            f.write("=========================" + prefetcher_name + " Prefetcher=========================\n")
+            f.write("=========================TOTAL INFO=========================\n")
+            f.write(f"Access count : \t{total_access}\n")
+            f.write(f"[TOTAL HIT] : \t{total_hit}\t  [TOTAL MISS] : \t{total_miss}\n")
+            f.write(f"[TOTAL WRITE] : \t{self.stats['writes']}\t  [TOTAL READ] : \t{self.stats['reads']}\n")
+            f.write(f"[DATA WRITE] : \t{self.stats['writes']}\t  [DATA READ] : \t{self.stats['reads']}\n")
+            f.write(f"[INST WRITE] : \t{self.stats['inst_writes']}\t  [INST READ] : \t{self.stats['inst_reads']}\n")
+            f.write(f"[TOTAL HIT RATE] : \t{total_hit_rate:.2f}\t  [TOTAL MISS RATE] : \t{total_miss_rate:.2f}\n")
+            f.write(f"[PREFETCH Hit PER PREFETCH NUM] :\t{prefetch_hit_rate:.2f}\n")
+            f.write("=========================TOTAL INFO=========================\n")
         print(f"Results saved to {filename}")
 
 
 
 
-
 class Prefetcher:
+    def __init__(self):
+        self.name = "convention memory"
+    
     def prefetch(self, address):
         """No prefetching policy."""
         return []

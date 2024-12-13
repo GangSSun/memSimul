@@ -1,0 +1,17 @@
+=========================Simulation Results=========================
+DRAM BUFFER	128
+DRAM MEMORY	2048
+=========================ghb Prefetcher=========================
+Access count : 	2024836
+[HIT] : 	0	  [PREFETCH HIT] : 	0	  [MISS] : 	1369422
+[WRITE] : 	655414	  [READ] : 	1369085
+=========================ghb Prefetcher=========================
+=========================TOTAL INFO=========================
+Access count : 	2024836
+[TOTAL HIT] : 	0	  [TOTAL MISS] : 	1369422
+[TOTAL WRITE] : 	655414	  [TOTAL READ] : 	1369085
+[DATA WRITE] : 	655414	  [DATA READ] : 	1369085
+[INST WRITE] : 	0	  [INST READ] : 	337
+[TOTAL HIT RATE] : 	0.00	  [TOTAL MISS RATE] : 	0.68
+[PREFETCH Hit PER PREFETCH NUM] :	0.00
+=========================TOTAL INFO=========================

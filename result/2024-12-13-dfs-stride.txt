@@ -1,0 +1,17 @@
+=========================Simulation Results=========================
+DRAM BUFFER	128
+DRAM MEMORY	2048
+=========================stride Prefetcher=========================
+Access count : 	1517095
+[HIT] : 	0	  [PREFETCH HIT] : 	0	  [MISS] : 	1037240
+[WRITE] : 	479855	  [READ] : 	1036765
+=========================stride Prefetcher=========================
+=========================TOTAL INFO=========================
+Access count : 	1517095
+[TOTAL HIT] : 	0	  [TOTAL MISS] : 	1037240
+[TOTAL WRITE] : 	479855	  [TOTAL READ] : 	1036765
+[DATA WRITE] : 	479855	  [DATA READ] : 	1036765
+[INST WRITE] : 	0	  [INST READ] : 	475
+[TOTAL HIT RATE] : 	0.00	  [TOTAL MISS RATE] : 	0.68
+[PREFETCH Hit PER PREFETCH NUM] :	0.00
+=========================TOTAL INFO=========================
